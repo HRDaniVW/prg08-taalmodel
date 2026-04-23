@@ -1,0 +1,26 @@
+{
+  "name": "prg08-taalmodel",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/HRDaniVW/prg08-taalmodel#readme",
+  "bugs": {
+    "url": "https://github.com/HRDaniVW/prg08-taalmodel/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HRDaniVW/prg08-taalmodel.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@langchain/core": "^1.1.41",
+    "@langchain/openai": "^1.4.4",
+    "express": "^5.2.1",
+    "langchain": "^1.3.4"
+  }
+}
