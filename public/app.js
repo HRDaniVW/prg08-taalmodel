@@ -7,25 +7,23 @@ async function sendChat() {
     if (!prompt) return;
 
     addMessage(prompt, 'user');
-
     input.value = '';
 
     btn.classList.add("loading");
     btn.disabled = true;
-    btn.textContent = "Sending...";
+    btn.textContent = "Verzenden...";
 
     try {
         const response = await fetch("/api/test", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ prompt })
-
         });
+
         const data = await response.json();
-        console.log(data);
 
         if (!response.ok) {
-            throw new Error(data?.error || 'Server error');
+            throw new Error(data?.error || 'Server fout opgetreden');
         }
 
         const aiText = data?.response?.messages ?? data?.messages ?? data?.response ?? '';
@@ -33,13 +31,12 @@ async function sendChat() {
         addMessage(aiText, 'ai', { tokens: aiTokens });
     } catch (error) {
         console.error(error);
-        addMessage("Error: Unable to get response from server.", 'ai');
+        addMessage("Oops! Ik kon helaas geen antwoord geven. Probeer het later nogmaals. 🔄", 'ai');
     }
 
     btn.classList.remove("loading");
     btn.disabled = false;
-    btn.textContent = "Send";
-
+    btn.textContent = "Verzenden";
     messagesDiv.scrollTop = messagesDiv.scrollHeight;
 }
 
@@ -49,7 +46,6 @@ function addMessage(text, type, meta = {}) {
     const safeText = text ?? '';
 
     if (type === 'ai') {
-        // Render markdown for AI messages
         messageDiv.innerHTML = marked.parse(String(safeText));
 
         if (typeof meta.tokens === 'number') {
@@ -59,7 +55,6 @@ function addMessage(text, type, meta = {}) {
             messageDiv.appendChild(tokenDiv);
         }
     } else {
-        // Plain text for user messages
         messageDiv.textContent = safeText;
     }
 
@@ -69,7 +64,7 @@ function addMessage(text, type, meta = {}) {
 btn.addEventListener("click", sendChat);
 
 input.addEventListener("keypress", (e) => {
-    if (e.key === "Enter") {
+    if (e.key === "Enter" && !btn.disabled) {
         sendChat();
     }
 });

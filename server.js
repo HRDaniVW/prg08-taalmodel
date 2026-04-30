@@ -5,7 +5,7 @@ const app = express();
 app.use(express.json())
 
 app.get("/api/test", async(req, res)=> {
-    const result = await callOpenAI();
+    const result = await callOpenAI("Stel jezelf voor als een biologie chatbot!");
     res.json({response: result});
 })
 
@@ -16,4 +16,4 @@ app.post("/api/test", async(req, res)=> {
 })
 
 app.use(express.static("public"));
-app.listen(3000, () => console.log(`Serving on http://localhost:3000`))
+app.listen(3000, () => console.log(`Natuur Biologie Chatbot actief op http://localhost:3000`))

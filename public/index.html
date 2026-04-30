@@ -1,20 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat App</title>
+    <title>Natuur Biologie Chatbot - Dieren Q&A</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
+    <div class="background-decoration"></div>
     <div class="container">
-        <h1>AI Chat Assistant</h1>
+        <div class="header">
+            <div class="header-content">
+                <h1>🦁 Natuur Biologie Chatbot 🦋</h1>
+                <p class="subtitle">Ontdek de wonderen van het dierenrijk</p>
+            </div>
+        </div>
         <div id="chat-container">
             <div id="messages"></div>
             <div id="input-area">
-                <input type="text" id="message-input" placeholder="Type your message here...">
-                <button id="send-button">Send</button>
+                <input type="text" id="message-input" placeholder="Stel een vraag over dieren of natuur..." autofocus>
+                <button id="send-button">Verzenden</button>
             </div>
         </div>
     </div>
