@@ -1,5 +1,6 @@
 import { AzureChatOpenAI } from "@langchain/openai";
 import { HumanMessage, AIMessage, SystemMessage } from "@langchain/core/messages";
+import { response } from "express";
 
 const llm = new AzureChatOpenAI({
     temperature: 0.5,
@@ -36,9 +37,32 @@ let messages = [
 
 function isViolenceRelated(text) {
     const violenceKeywords = [
-        'harm', 'hurt', 'kill', 'torture', 'abuse', 'fight to death', 'deadly attack',
-        'how to catch', 'how to trap', 'dangerous interaction', 'violence',
-        'how to make an animal fight', 'cockfighting', 'dogfighting'
+        'schade',
+        'doden',
+        'verwonden',
+        'aanvallen',
+        'schieten',
+        'vergiftigen',
+        'vermoorden',
+        'diermishandeling',
+        'dierlijke wreedheid',
+        'dierlijke mishandeling',
+        'dierlijke marteling',
+        'dierlijke foltering',
+        'dierlijke pijn',
+        'dierlijke lijden',
+        'dierlijke dood',
+        'dierlijke verwonding',
+        'dierlijke aanval',
+        'dierlijke schade',
+        'dierlijke mishandeling',
+        'dierlijke wreedheid',
+        'dierlijke marteling',
+        'haanenvechten',
+        'hondenvechten',
+        'stierenvechten',
+        'dierenvechten',
+        'dierenwreedheid',
     ];
     const lowerText = text.toLowerCase();
     return violenceKeywords.some(keyword => lowerText.includes(keyword));
@@ -70,4 +94,5 @@ export async function callOpenAI(message, sessionId) {
         messages: response.content,
         tokens: response.usage_metadata.total_tokens ?? 0
     }
+
 }
